@@ -18,6 +18,11 @@ using Serilog.Events;
 using Serilog.Sinks.Slack;
 using Amazon;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace CollAction
 {
@@ -71,13 +76,11 @@ namespace CollAction
                     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                     .AddDataAnnotationsLocalization();
 
-            /*
             services.Configure<MvcOptions>(options =>
             {
                 if (Environment.IsProduction())
                     options.Filters.Add(new RequireHttpsAttribute());
             });
-            */
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -100,6 +103,13 @@ namespace CollAction
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
+            if (Environment.IsProduction())
+            {
+                var rewriterOptions = new RewriteOptions();
+                rewriterOptions.AddRedirectToHttps();
+                app.UseRewriter(rewriterOptions);
+            }
+
             var supportedCultures = new[]
             {
                 new CultureInfo("en-US"),
@@ -139,7 +149,13 @@ namespace CollAction
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Path.GetFullPath("."), @".well-known\acme-challenge")),
+                RequestPath = new PathString("/.well-known/acme-challenge")
+            });
+
+            app.UseStaticFiles(new StaticFileOptions { ServeUnknownFileTypes = true });
 
             app.UseIdentity();
 
