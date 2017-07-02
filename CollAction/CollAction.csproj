@@ -56,4 +56,9 @@ npm run build</PreBuildEvent>
   <ItemGroup>
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\.well-known\acme-challenge\.gitignore">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

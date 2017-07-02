@@ -42,10 +42,13 @@ namespace CollAction
 
             Configuration = builder.Build();
             Environment = env;
+            SslAvailable = File.Exists(CertificateFile);
         }
 
         public IConfigurationRoot Configuration { get; }
         public IHostingEnvironment Environment { get; }
+        private bool SslAvailable { get; set; }
+        private const string CertificateFile = "/app/certificate/cert.pfx";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -78,7 +81,7 @@ namespace CollAction
 
             services.Configure<MvcOptions>(options =>
             {
-                if (Environment.IsProduction())
+                if (SslAvailable)
                     options.Filters.Add(new RequireHttpsAttribute());
             });
 
@@ -103,7 +106,7 @@ namespace CollAction
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
-            if (Environment.IsProduction())
+            if (SslAvailable)
             {
                 var rewriterOptions = new RewriteOptions();
                 rewriterOptions.AddRedirectToHttps();
@@ -151,7 +154,7 @@ namespace CollAction
 
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Path.GetFullPath("."), @".well-known\acme-challenge")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(Path.GetFullPath("."), @"wwwroot/.well-known/acme-challenge")),
                 RequestPath = new PathString("/.well-known/acme-challenge")
             });
 

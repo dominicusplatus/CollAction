@@ -11,8 +11,14 @@ namespace CollAction
     {
         public static void Main(string[] args)
         {
+            const string certificateFile = "/app/certificate/cert.pfx";
+
             var host = new WebHostBuilder()
-                .UseKestrel(options => options.UseHttps("/app/certificate/cert.pfx"))
+                .UseKestrel(options =>
+                {
+                    if (File.Exists(certificateFile))
+                        options.UseHttps(certificateFile);
+                })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
