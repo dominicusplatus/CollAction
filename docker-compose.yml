@@ -2,6 +2,7 @@ version: '2'
 
 volumes:
   images:
+  certificate:
 
 services:
   collaction:
@@ -19,9 +20,10 @@ services:
       - "5000:5000"
     volumes:
       - images:/app/wwwroot/usercontent
+      - certificate:/app/certificate/
     environment:
       - ASPNETCORE_ENVIRONMENT=Release
-      - ASPNETCORE_URLS=http://*:5000
+      - ASPNETCORE_URLS=http://*:5000;https://*:5050
 
   db:
     image: postgres
