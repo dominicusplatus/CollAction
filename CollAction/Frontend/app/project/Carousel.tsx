@@ -92,8 +92,8 @@ class LandscapeCarousel extends React.Component<ICarouselProps, ICarouselState> 
             <p>In 6 easy Steps</p>
           </div>
 
-          <div className="col-xs-4 landscape-carousel-body">
-            <p>{this.props.items[this.state.selected].text}</p>
+          <div className="col-xs-5 landscape-carousel-body">
+            <div>{this.props.items[this.state.selected].text}</div>
           </div>
         </div>
 
