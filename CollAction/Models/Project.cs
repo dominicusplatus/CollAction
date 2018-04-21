@@ -94,8 +94,6 @@ namespace CollAction.Models
         public string HashTags
             => string.Join(";", Tags?.Select(tag => tag.Tag.Name) ?? Enumerable.Empty<string>());
 
-        [NotMapped]
-        public string ProjectNameUrl => WebUtility.UrlEncode(Name);
         public async Task SetTags(ApplicationDbContext context, params string[] tagNames)
         {
             List<Tag> tags = await context.Tags.Where(tag => tagNames.Contains(tag.Name)).ToListAsync();

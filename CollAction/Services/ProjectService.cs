@@ -80,7 +80,6 @@ namespace CollAction.Services
                 {
                     ProjectId = p.Id,
                     ProjectName = p.Name,
-                    ProjectNameUrl = WebUtility.UrlEncode(p.Name),
                     ProjectProposal = p.Proposal,
                     CategoryName = p.Category.Name,
                     CategoryColorHex = p.Category.ColorHex,

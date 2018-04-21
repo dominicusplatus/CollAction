@@ -17,8 +17,6 @@ namespace CollAction.Models
         public int ProjectId { get; set; }
 
         public string ProjectName { get; set; }
-        
-        public string ProjectNameUrl { get; set; }
 
         public string ProjectProposal { get; set; }
 
