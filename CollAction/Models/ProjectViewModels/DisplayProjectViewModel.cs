@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CollAction.Helpers;
+using System.Net;
 
 namespace CollAction.Models
 {

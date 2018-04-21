@@ -14,7 +14,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace CollAction.Controllers
 {
@@ -282,9 +281,9 @@ namespace CollAction.Controllers
 
                 project.Name = model.Name;
                 project.Description = model.Description;
-                project.Proposal = model.Proposal;
                 project.Goal = model.Goal;
-                project.CreatorComments = model.CreatorComments;                
+                project.Proposal = model.Proposal;
+                project.CreatorComments = model.CreatorComments;
                 project.CategoryId = model.CategoryId;
                 project.Target = model.Target;
                 project.Start = model.Start;

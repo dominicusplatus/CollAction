@@ -331,11 +331,11 @@ namespace CollAction.Migrations
                     b.Property<int>("CategoryId");
 
                     b.Property<string>("CreatorComments")
-                        .HasMaxLength(20000);
+                        .HasMaxLength(2000);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(10000);
+                        .HasMaxLength(1000);
 
                     b.Property<int?>("DescriptionVideoLinkId");
 
@@ -349,7 +349,7 @@ namespace CollAction.Migrations
 
                     b.Property<string>("Goal")
                         .IsRequired()
-                        .HasMaxLength(10000);
+                        .HasMaxLength(1000);
 
                     b.Property<int?>("LocationId");
 
