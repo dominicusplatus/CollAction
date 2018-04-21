@@ -65,7 +65,6 @@ namespace CollAction.Controllers
             return View(model);
         }
 
-      //  [Route("~/projects/{name}/details")]
         public async Task<IActionResult> Details(string name)
         {
             List<DisplayProjectViewModel> items = await DisplayProjectViewModel.GetViewModelsWhere(_context, p => p.Name == name && p.Status != ProjectStatus.Hidden && p.Status != ProjectStatus.Deleted);
@@ -204,7 +203,6 @@ namespace CollAction.Controllers
         }
 
         [Authorize]
-        [Route("~/projects/{name}/thankyou")]
         public IActionResult ThankYouCreate(string name)
         {
             return View(new ThankYouCreateProjectViewModel
@@ -393,7 +391,6 @@ namespace CollAction.Controllers
         }
 
         [Authorize]
-        [Route("~/projects/{name}/participate")]
         public async Task<IActionResult> Commit(string name)
         {
             var project =  await _service.GetProjectByName(name); 
@@ -417,7 +414,7 @@ namespace CollAction.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> CommitToProject(CommitProjectViewModel commitProjectViewModel)
+        public async Task<IActionResult> Commit(CommitProjectViewModel commitProjectViewModel)
         {
             ApplicationUser user = await _userManager.GetUserAsync(User);
             bool success = await _service.AddParticipant(user.Id, commitProjectViewModel.ProjectId);

@@ -177,6 +177,16 @@ namespace CollAction
                      new { controller = "Projects", action = "DetailsById" }
                  );
 
+                 routes.MapRoute("participate",
+                     "Projects/{name}/participate",
+                     new { controller = "Projects", action = "Commit" }
+                 );
+
+                routes.MapRoute("thankyou",
+                     "Projects/{name}/thankyou",
+                     new { controller = "Projects", action = "ThankYouCreate" }
+                 );
+
                 routes.MapRoute("start",
                      "start",
                      new { controller = "Projects", action = "StartInfo" }
