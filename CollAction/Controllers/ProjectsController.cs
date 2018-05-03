@@ -431,7 +431,7 @@ namespace CollAction.Controllers
                     "<meta charset='utf-8'/>"+
                     String.Format("Hi {0}!<br><br>",userDescription) +
                     "Thank you for participating in a CollAction project!<br><br>" +
-                    "In crowdacting, we only act collectively when we meet the target before the deadline, so please feel very welcome to share this project on social media through the social media buttons on the <a href="+projUrl+">project page</a>!<br><br>" +
+                    "In crowdacting, we only act collectively when we meet the target before the deadline, so please feel very welcome to share this project on social media through the social media buttons on the <a href="+projUrl+">project page</a>!<br>" +
                     "<span style='#share-buttons img {}'>"+
                     "<div id='share-buttons'>"+
                     "<p>Multiply your impact and share the project with the buttons below 🙂</p>"+
@@ -445,7 +445,7 @@ namespace CollAction.Controllers
                     "<img style='width: 25px; padding: 5px;border: 0;box-shadow: 0;display: inline;' src="+systemUrl+"/images/social/twitter.png alt='Twitter' />"+
                     "</a>"+
                     "</div>"+
-                    "</span>"+
+                    "</span><br>"+
                     "We'll keep you updated on the project. Also feel free to Like us on <a href=\"https://www.facebook.com/collaction.org/\">Facebook</a> to stay up to date on everything CollAction!<br><br>" +
                     "Warm regards,<br>The CollAction team<br>" +
                     "PS: Did you know you can start your own project on <a href=\"https://collaction.org/start\">www.collaction.org/start</a> ?<br><br>";
