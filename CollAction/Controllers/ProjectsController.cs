@@ -20,11 +20,7 @@ using CollAction.Services;
 using System.Text.RegularExpressions;
 using CollAction.Models.ProjectViewModels;
 using System.Linq.Expressions;
-<<<<<<< HEAD
-=======
 using Newtonsoft.Json;
-using System.Net;
->>>>>>> e9dded5b147c46764f61c144e71cda1a19de3f29
 
 namespace CollAction.Controllers
 {
